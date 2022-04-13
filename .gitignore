@@ -30,3 +30,19 @@
 *.exe
 *.out
 *.app
+
+# data
+data_old
+# results
+results_old
+lisa_res
+.vscode 
+.ipynb_checkpoints
+libtorch
+build
+jobs
+
+CMakeFiles
+CMakeCache.txt
+cmake_install.cmake
+Makefile

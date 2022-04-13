@@ -1,0 +1,74 @@
+Wikipedia talk (cy) network, part of the Koblenz Network Collection
+===========================================================================
+
+This directory contains the TSV and related files of the wiki_talk_cy network: This is the communication network of the Welsh Wikipedia.  Nodes represent users, and an edge from user A to user B denotes that user A wrote a message on the talk page of user B at a certain timestamp.
+
+
+More information about the network is provided here: 
+http://konect.cc/networks/wiki_talk_cy
+
+Files: 
+    meta.wiki_talk_cy -- Metadata about the network 
+    out.wiki_talk_cy -- The adjacency matrix of the network in whitespace-separated values format, with one edge per line
+      The meaning of the columns in out.wiki_talk_cy are: 
+        First column: ID of from node 
+        Second column: ID of to node
+        Third column (if present): weight or multiplicity of edge
+        Fourth column (if present):  timestamp of edges Unix time
+        Third column: edge weight
+        Fourth column: timestamp of the edge
+
+
+Use the following References for citation:
+
+@MISC{konect:2018:wiki_talk_cy,
+    title = {Wikipedia talk (cy) network dataset -- {KONECT}},
+    month = jan,
+    year = {2018},
+    url = {http://konect.cc/networks/wiki_talk_cy}
+}
+
+@inproceedings{konect:sun_2016_49561,
+	title = {Predicting User Roles in Social Networks using Transfer
+        	Learning with Feature Transformation},
+	author = {Jun Sun and Jérôme Kunegis and Steffen Staab},
+	booktitle = {Proc. ICDM Workshop on Data Min. in Netw.},
+	year = {2016},
+	_pages = {...}, 
+}
+
+@inproceedings{konect:sun_2016_49561,
+	title = {Predicting User Roles in Social Networks using Transfer
+        	Learning with Feature Transformation},
+	author = {Jun Sun and Jérôme Kunegis and Steffen Staab},
+	booktitle = {Proc. ICDM Workshop on Data Min. in Netw.},
+	year = {2016},
+	_pages = {...}, 
+}
+
+
+@inproceedings{konect,
+	title = {{KONECT} -- {The} {Koblenz} {Network} {Collection}},
+	author = {Jérôme Kunegis},
+	year = {2013},
+	booktitle = {Proc. Int. Conf. on World Wide Web Companion},
+	pages = {1343--1350},
+	url = {http://dl.acm.org/citation.cfm?id=2488173},
+	url_presentation = {https://www.slideshare.net/kunegis/presentationwow},
+	url_web = {http://konect.cc/},
+	url_citations = {https://scholar.google.com/scholar?cites=7174338004474749050},
+}
+
+@inproceedings{konect,
+	title = {{KONECT} -- {The} {Koblenz} {Network} {Collection}},
+	author = {Jérôme Kunegis},
+	year = {2013},
+	booktitle = {Proc. Int. Conf. on World Wide Web Companion},
+	pages = {1343--1350},
+	url = {http://dl.acm.org/citation.cfm?id=2488173},
+	url_presentation = {https://www.slideshare.net/kunegis/presentationwow},
+	url_web = {http://konect.cc/},
+	url_citations = {https://scholar.google.com/scholar?cites=7174338004474749050},
+}
+
+

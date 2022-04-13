@@ -1,0 +1,4 @@
+Name,Algorithm,Structure,Model,TrimMoment,TrimType,Date,Time,Num_components,Num_1,Node_avg,Node_max
+KONECT_500-10000/Human proteins (Stelzl),FB-N-B,matrix,FB,N,B,Wed Apr  6 17:30:31 2022,158.101,159,114,10.7233,1492
+KONECT_500-10000/Human proteins (Stelzl),FB-NI-B,matrix,FB,NI,B,Wed Apr  6 17:30:31 2022,159.841,159,114,10.7233,1492
+KONECT_500-10000/Human proteins (Stelzl),FB-A-B,matrix,FB,A,B,Wed Apr  6 17:30:31 2022,248.121,159,114,10.7233,1492

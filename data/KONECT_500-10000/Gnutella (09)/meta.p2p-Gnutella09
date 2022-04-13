@@ -1,0 +1,12 @@
+category: Computer
+code: GN
+name: Gnutella (09)
+description: Host–host connection
+url: http://snap.stanford.edu/data/p2p-Gnutella09.html
+cite: konect:ripeanu02 
+extr: snap
+long-description:  This is a network of Gnutella hosts from 2002.  The nodes represent Gnutella hosts, and the directed edges represent connections between them.  The dataset is from August 09, 2002.
+timeiso: 2002-08-09
+entity-names: host
+relationship-names: connection 
+tags: #nonreciprocal
