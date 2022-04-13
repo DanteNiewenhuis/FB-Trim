@@ -1,92 +1,98 @@
 # FB-AI-Trim: Efficient Trimming for Strongly Connected Components Calculation
 
-This is the code for FB-AI-Trim.
-The code is written in three languages:
+FB-AI-Trim is an AI-enhanced implementation of the Forward-Backward algorithm (FB) to calculate strongly connected components (in directed graphs).
 
-- C++ for all interactions with the graphs.
-- Python for result analysis, model training, and graph downloading
-- Bash for scripting purposes.
+## Basic information
 
-## Building
+The most important aspects of the artifact are:  
 
-The requirements for the project are as follows:
-The C++ code is written using C++ 14. If you want to build the project,
-you need cmake 3.15 and gcc 9.4.0. Pytorch for C++ is required to build and run the code. The installation of PyTorch for C++ is explained at "https://pytorch.org/cppdocs/installing.html".
-To make it work you might the paths to the libtorch folder inside CMAKELISTS.txt.
+    - Algorithms: FB-Trim with 5 variants (4 static and 1 AI-based). 
+    - Code: C++, Python3, bash.
+    - Compilation: g++ and CMake
+    - Environment: Experiments were performed on Ubuntu and CentOS, 
+      and confirmed to work on macOS Catalina.
+    - Hardware: Machines with at regular CPUs and at least 8GB memory 
+      are sufficient for executing all parts of the artifact.
+    - How to use: Download and decompress the artifact check dependencies, compile the code, 
+      run the various test scripts, and observe the results.
+    - Time to prepare (approximately): less than 5 minutes,including downloading extra-dependencies.
+    - Time needed to complete experiments (approximately)?:
+      All experiments may take more ~20hours, depending on the extent of retraining and testing.
+    - Publicly available?: Yes.
 
-All python code is written using Python 3.7.6. 
-The requred packages are shown below with the version we have used
+## Components and requirements
 
-- For analysis and training:
-  - PyTorch 1.5.0
-  - Numpy 1.18.1
-  - Pandas 1.1.5
-  - Matplotlib 3.1.3
-- For Downloading:
-  - wget 3.2
-  - BeautifulSoup 4.8.2
-  - tqdm 4.42.1
-  - urllib3 1.25.8
+The artifact code includes:
 
-Other versions of these packages might also work.
+    - The code for implementing the FB-AI-Trim algorithm.
+    - The code for training the AI model.
+    - Scripts for various graph operations, 
+      from downloading graphs to results analysis and plotting.
 
-## Downloading graphs
+The code is written using three languages:
 
-Graphs can be downloaded using the download_NR.py and download_KONECT.py .
-A user can provide a range of vertices and edges.
-All graphs that satisfy this range are then downloaded and placed in folders.
+    - C++ for all interactions with the graphs (mostly the algorithm itself). 
+     The C++ code is written using C++ 14, and requires CMake 3.15 and gcc 9.4.0. 
+    - Python for result analysis, model training, and graph downloading. 
+     All python code is written using Python 3.7.6. 
+     The required packages are shown below, with the version that has been used for the data in the article. 
+     Pytorch for C++ is also required to build and run the code. 
+     The installation of PyTorch for C++ is explained at https://pytorch.org/cppdocs/installing.html. 
+    - Bash for scripting purposes.
 
-## Processing a graph
+### Datasets
 
-There are two ways to process a graph: main and info.
+The artifact includes the graphs discussed in this paper.More graphs can be downloaded using two provided scripts, one for graphs in the KONECT repository~\cite{konect} and one for graphs in the network repository~\cite{nr}. For both these scripts, the user can provide a range of vertices and edges, and all graphs that satisfy this range are then downloaded and placed in folders.
 
-### main
+## Installation
 
-main is used to get the strongly connected components of a given graph. 
-When executed the main executable needs a path to a graph, and a moment of trimming. 
-For example:
+The code and data are accessible by uncompressing the artifact. The code needs to be recompiled using Cmake, once all dependencies, including PyTorch C++, are satisfied (see section~\ref{apendix:reqs}).
 
-  ./executables/main "path_to_graph" -AI
+## Execution
 
-The moment of trimming can be provided using the following flags:
+There are two ways to process a graph: \texttt{info}, used to get topological information from a graph, and \texttt{main}, used to get the strongly connected components of a given graph using FB-Trim.
 
-- "-I": initial
-- "-NI": not initial
-- "-A": Always
-- "-NO": Never
-- "-AI": AI trimming
+### Collecting graph information
 
-There are some extra flags that can be added:
+To collect graph information, the \texttt{info} application is used with two arguments: the folder where the graph is stored and a name of a dataset, which is used to name and create an output file, in the \verb|results| folder, where the statistics will be stored. This \texttt{info} application is used in the scripts that collect data across all graphs in a dataset.
 
-- "-log" : results are logged to a csv
-- "-NR" : needs to be added when using a graph gathered from the NR dataset
-- "-k" : use the kosaraju algorithm to process the graph
-- Flags used to change the type of trimming:
-  - "-In": Only incoming edges
-  - "-Out": Only outgoing edges
-  - "-Both": Only Incoming edges
+### Calculating SCC
 
-### info
+To execute FB-Trim on a graph, the \texttt{main} program is used.
+When executed, it needs a path to a graph, and a flag indicating which trimming model to use. For example:
+\begin{verbatim}
+./executables/main "path_to_graph" -AI
+\end{verbatim}
 
-Info is used to get topological information from a graph.
-This is called in the following way:
+It is important to execute the FB-Trim from the main folder for proper logging of results.
 
- ./executables/info "path_to_graph" "dataset_name"
+The trim model can be provided using the following flags:
 
-## Processing a whole dataset
+    - -I: initial
+    - -NI: not initial
+    - -A: Always
+    - -NO: Never
+    - -AI: AI trimming
 
-The best method of processing a whole dataset is to create a bash script.
-An example of such a bash script is provided in bash/processing_konect.sh
+Additional flags can be added:
 
-## Aggregating data
+    - -log : results are logged to a \verb|csv| file.
+    - -NR : needs to be added when using a graph gathered from the 
+     NR dataset due to slightly different file structure.
+    - -k : use the kosaraju algorithm to process the graph.
 
-All graphs that are processed are logged in results/runs/results.csv
-The next step is to aggregate and combine this data. 
-This is done by first calling python/aggregate.py and then python/combine.py.
+A full example of how to run the analysis of the graphs used in this paper is included in \verb|./bash/processing_konect.sh|.
 
-## Analysis and training
+## Results
 
-The combined data can now be used to analyse the results and train a new AI model. 
-The graphs created in the paper can be made using python/result_analysis.py.
+All graphs that are processed are logged, and results are stored in the \texttt{results} folder. The next step is to aggregate and combine this data, operations supported by Python scripts. The combined data can now be used to analyse the results and train a new AI model.
 
-Tools to train a new AI model are defined in python/AI/utils.
+The first step is to run \texttt{aggregate.py} located in the \texttt{Python} folder. This scripts aggregates averages the different runs of a model on a single graph and store them in \texttt{results/aggregated}. Next, the aggregated results can be combined by running \texttt{combine.py}. This creates a new csv in \texttt{results/combined} were each row is the aggregated results of all models on a single graph.
+
+### Analysis
+
+All functions used to analyse and plot results are provided in \texttt{graph\_utils.py}. Running \texttt{result\_analysis.py} creates the main plots shown in our paper, and save them to \texttt{results/images}.
+
+### Training
+
+Functions to train a new model are defined in \texttt{Python/AI/utils.py}. Running \texttt{Python/AI/pre.py} shows an example of how to train a new model. \textit{Note}, trained networks should be saved exactly as defined in \texttt{Python/AI/pre.py}.
