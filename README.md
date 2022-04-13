@@ -42,27 +42,27 @@ The code is written using three languages:
 
 ### Datasets
 
-The artifact includes the graphs discussed in this paper.More graphs can be downloaded using two provided scripts, one for graphs in the KONECT repository~\cite{konect} and one for graphs in the network repository~\cite{nr}. For both these scripts, the user can provide a range of vertices and edges, and all graphs that satisfy this range are then downloaded and placed in folders.
+The artifact includes the graphs discussed in this paper.More graphs can be downloaded using two provided scripts, one for graphs in the KONECT repository  and one for graphs in the network repository. For both these scripts, the user can provide a range of vertices and edges, and all graphs that satisfy this range are then downloaded and placed in folders.
 
 ## Installation
 
-The code and data are accessible by uncompressing the artifact. The code needs to be recompiled using Cmake, once all dependencies, including PyTorch C++, are satisfied (see section~\ref{apendix:reqs}).
+The code and data are accessible by uncompressing the artifact. The code needs to be recompiled using Cmake, once all dependencies, including PyTorch C++, are satisfied.
 
 ## Execution
 
-There are two ways to process a graph: \texttt{info}, used to get topological information from a graph, and \texttt{main}, used to get the strongly connected components of a given graph using FB-Trim.
+There are two ways to process a graph: *info*, used to get topological information from a graph, and *main*, used to get the strongly connected components of a given graph using FB-Trim.
 
 ### Collecting graph information
 
-To collect graph information, the \texttt{info} application is used with two arguments: the folder where the graph is stored and a name of a dataset, which is used to name and create an output file, in the \verb|results| folder, where the statistics will be stored. This \texttt{info} application is used in the scripts that collect data across all graphs in a dataset.
+To collect graph information, the *info* application is used with two arguments: the folder where the graph is stored and a name of a dataset, which is used to name and create an output file, in the *results* folder, where the statistics will be stored. This *info* application is used in the scripts that collect data across all graphs in a dataset.
 
 ### Calculating SCC
 
-To execute FB-Trim on a graph, the \texttt{main} program is used.
+To execute FB-Trim on a graph, the *main* program is used.
 When executed, it needs a path to a graph, and a flag indicating which trimming model to use. For example:
-\begin{verbatim}
+\begin{verbatim*
 ./executables/main "path_to_graph" -AI
-\end{verbatim}
+\end{verbatim*
 
 It is important to execute the FB-Trim from the main folder for proper logging of results.
 
@@ -81,18 +81,18 @@ Additional flags can be added:
      NR dataset due to slightly different file structure.
     - -k : use the kosaraju algorithm to process the graph.
 
-A full example of how to run the analysis of the graphs used in this paper is included in \verb|./bash/processing_konect.sh|.
+A full example of how to run the analysis of the graphs used in this paper is included in *./bash/processing_konect.sh*.
 
 ## Results
 
-All graphs that are processed are logged, and results are stored in the \texttt{results} folder. The next step is to aggregate and combine this data, operations supported by Python scripts. The combined data can now be used to analyse the results and train a new AI model.
+All graphs that are processed are logged, and results are stored in the *results* folder. The next step is to aggregate and combine this data, operations supported by Python scripts. The combined data can now be used to analyse the results and train a new AI model.
 
-The first step is to run \texttt{aggregate.py} located in the \texttt{Python} folder. This scripts aggregates averages the different runs of a model on a single graph and store them in \texttt{results/aggregated}. Next, the aggregated results can be combined by running \texttt{combine.py}. This creates a new csv in \texttt{results/combined} were each row is the aggregated results of all models on a single graph.
+The first step is to run *aggregate.py* located in the *Python* folder. This scripts aggregates averages the different runs of a model on a single graph and store them in *results/aggregated*. Next, the aggregated results can be combined by running *combine.py*. This creates a new csv in *results/combined* were each row is the aggregated results of all models on a single graph.
 
 ### Analysis
 
-All functions used to analyse and plot results are provided in \texttt{graph\_utils.py}. Running \texttt{result\_analysis.py} creates the main plots shown in our paper, and save them to \texttt{results/images}.
+All functions used to analyse and plot results are provided in *graph\_utils.py*. Running *result\_analysis.py* creates the main plots shown in our paper, and save them to *results/images*.
 
 ### Training
 
-Functions to train a new model are defined in \texttt{Python/AI/utils.py}. Running \texttt{Python/AI/pre.py} shows an example of how to train a new model. \textit{Note}, trained networks should be saved exactly as defined in \texttt{Python/AI/pre.py}.
+Functions to train a new model are defined in *Python/AI/utils.py*. Running *Python/AI/pre.py* shows an example of how to train a new model. *Note*, trained networks should be saved exactly as defined in *Python/AI/pre.py*.
