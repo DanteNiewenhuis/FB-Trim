@@ -41,6 +41,7 @@ lisa_res
 .ipynb_checkpoints
 libtorch
 build
+executables/*
 
 CMakeFiles
 CMakeCache.txt
