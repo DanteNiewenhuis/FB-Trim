@@ -31,7 +31,8 @@
 *.out
 *.app
 
-# data
+data_artifact
+data.zip
 data_old
 # results
 results_old
