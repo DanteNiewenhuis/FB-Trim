@@ -1,0 +1,51 @@
+#!/bin/bash
+
+################################################################################
+####### A script to fully train a new model
+################################################################################
+
+# process all NR graphs using models Never trim and Initial Trim
+
+runs=6
+
+while IFS= read -r file; 
+do
+    echo "######################################################################"
+    echo "PROCESSING $file"
+    echo "######################################################################"
+    for i in $( eval echo {1..$runs} )
+    do
+        echo "file:" $file
+        ./executables/main "$file" 4 -NO -Both -log -NR
+        ./executables/main "$file" 4 -I -Both -log -NR
+    done
+done < "data/train_files_NR.txt"
+
+# process all NR graphs using models Never trim and Initial Trim
+
+FILESIZE=$(grep "" -c "data/train_files_KONECT.txt")
+
+while IFS= read -r file; 
+do
+    echo "######################################################################"
+    echo "PROCESSING $file"
+    echo "######################################################################"
+    for i in $( eval echo {1..$runs} )
+    do
+        echo "file:" $file
+        ./executables/main "$file" 4 -NO -Both -log
+        ./executables/main "$file" 4 -I -Both -log
+    done
+done < "data/train_files_KONECT.txt"
+
+# aggregate results
+
+python3 python/aggregate.py --runs $runs --num_models 2
+
+# combine results
+
+python3 python/combine.py
+
+# train AI model using the results
+
+python3 python/AI/pre.py

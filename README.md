@@ -1,6 +1,7 @@
 # FB-AI-Trim: Efficient Trimming for Strongly Connected Components Calculation
 
-FB-AI-Trim is an AI-enhanced implementation of the Forward-Backward algorithm (FB) to calculate strongly connected components (in directed graphs).
+FB-AI-Trim is an AI-enhanced implementation of the Forward-Backward algorithm (FB) to calculate strongly connected components (in directed graphs). This repository is the implementation of the paper <"link_to_paper">.
+The official artifact of the paper can be found at <https://zenodo.org/record/6423988>.
 
 ## Basic information
 
@@ -96,3 +97,7 @@ All functions used to analyse and plot results are provided in *graph\_utils.py*
 ### Training
 
 Functions to train a new model are defined in *Python/AI/utils.py*. Running *Python/AI/pre.py* shows an example of how to train a new model. *Note*, trained networks should be saved exactly as defined in *Python/AI/pre.py*.
+
+## Jobs
+
+Three jobs are provided in the *jobs* folder.  *train\_model* takes all the steps to train a fresh model. *evaluate\_eval\_graphs* processes all evaluation graphs using each model. *evaluate\_training\_graphs* processes all training graphs using each model. *Note*: this makes use of the data provided in the artifact of our paper found at <https://zenodo.org/record/6423988>.

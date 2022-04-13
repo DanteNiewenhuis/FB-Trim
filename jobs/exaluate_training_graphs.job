@@ -1,0 +1,42 @@
+#!/bin/bash
+
+################################################################################
+####### Processing all training graphs using all five models
+################################################################################
+
+
+runs=6
+
+while IFS= read -r file; 
+do
+    echo "######################################################################"
+    echo "PROCESSING $file"
+    echo "######################################################################"
+    for i in $( eval echo {1..$runs} )
+    do
+        echo "file:" $file
+        ./executables/main "$file" 4 -NO -Both -log -NR
+        ./executables/main "$file" 4 -I -Both -log -NR
+        ./executables/main "$file" 4 -NI -Both -log -NR
+        ./executables/main "$file" 4 -A -Both -log -NR
+        ./executables/main "$file" 4 -AI -Both -log -NR
+    done
+done < "data/train_files_NR.txt"
+
+while IFS= read -r file; 
+do
+    echo "######################################################################"
+    echo "PROCESSING $file"
+    echo "######################################################################"
+    for i in $( eval echo {1..$runs} )
+    do
+        echo "file:" $file
+        ./executables/main "$file" 4 -NO -Both -log
+        ./executables/main "$file" 4 -I -Both -log
+        ./executables/main "$file" 4 -NI -Both -log
+        ./executables/main "$file" 4 -A -Both -log
+        ./executables/main "$file" 4 -AI -Both -log
+    done
+done < "data/train_files_KONECT.txt"
+
+
