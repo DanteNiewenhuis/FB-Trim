@@ -10,14 +10,14 @@ The most important aspects of the artifact are:
     - Code: C++, Python3, bash.
     - Compilation: g++ and CMake
     - Environment: Experiments were performed on Ubuntu and CentOS, 
-      and confirmed to work on macOS Catalina.
+        and confirmed to work on macOS Catalina.
     - Hardware: Machines with at regular CPUs and at least 8GB memory 
-      are sufficient for executing all parts of the artifact.
+        are sufficient for executing all parts of the artifact.
     - How to use: Download and decompress the artifact check dependencies, compile the code, 
-      run the various test scripts, and observe the results.
+        run the various test scripts, and observe the results.
     - Time to prepare (approximately): less than 5 minutes,including downloading extra-dependencies.
     - Time needed to complete experiments (approximately)?:
-      All experiments may take more ~20hours, depending on the extent of retraining and testing.
+        All experiments may take more ~20hours, depending on the extent of retraining and testing.
     - Publicly available?: Yes.
 
 ## Components and requirements
@@ -32,12 +32,12 @@ The artifact code includes:
 The code is written using three languages:
 
     - C++ for all interactions with the graphs (mostly the algorithm itself). 
-     The C++ code is written using C++ 14, and requires CMake 3.15 and gcc 9.4.0. 
+      The C++ code is written using C++ 14, and requires CMake 3.15 and gcc 9.4.0. 
     - Python for result analysis, model training, and graph downloading. 
-     All python code is written using Python 3.7.6. 
-     The required packages are shown below, with the version that has been used for the data in the article. 
-     Pytorch for C++ is also required to build and run the code. 
-     The installation of PyTorch for C++ is explained at https://pytorch.org/cppdocs/installing.html. 
+      All python code is written using Python 3.7.6. 
+      The required packages are shown below, with the version that has been used for the data in the article. 
+      Pytorch for C++ is also required to build and run the code. 
+      The installation of PyTorch for C++ is explained at https://pytorch.org/cppdocs/installing.html. 
     - Bash for scripting purposes.
 
 ### Datasets
@@ -78,7 +78,7 @@ Additional flags can be added:
 
     - -log : results are logged to a \verb|csv| file.
     - -NR : needs to be added when using a graph gathered from the 
-     NR dataset due to slightly different file structure.
+    -       NR dataset due to slightly different file structure.
     - -k : use the kosaraju algorithm to process the graph.
 
 A full example of how to run the analysis of the graphs used in this paper is included in *./bash/processing_konect.sh*.
